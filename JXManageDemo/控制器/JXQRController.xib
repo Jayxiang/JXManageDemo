@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CuijxQRController">
+            <connections>
+                <outlet property="backView" destination="TNH-FR-hGa" id="GZS-2F-uuG"/>
+                <outlet property="bocImage" destination="zPg-zf-CG4" id="lFW-H2-Xrn"/>
+                <outlet property="preView" destination="qHz-uU-4Xp" id="uUt-vr-Z1l"/>
+                <outlet property="remindLabel" destination="kCE-Bw-z6m" id="u0Y-xp-k2C"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNH-FR-hGa">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHz-uU-4Xp">
+                            <rect key="frame" x="68.333333333333314" y="149.99999999999997" width="277.33333333333337" height="277.33333333333326"/>
+                            <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="qHz-uU-4Xp" secondAttribute="height" multiplier="1:1" id="4cV-nl-z94"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scaningbox" translatesAutoresizingMaskIntoConstraints="NO" id="zPg-zf-CG4">
+                            <rect key="frame" x="68" y="149.99999999999997" width="277.33333333333331" height="277.33333333333326"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="zPg-zf-CG4" secondAttribute="height" multiplier="1:1" id="xRw-cS-m69"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请将取景框对准二维码，即可自动扫描" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCE-Bw-z6m">
+                            <rect key="frame" x="76" y="437.33333333333331" width="261" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="zPg-zf-CG4" firstAttribute="width" secondItem="TNH-FR-hGa" secondAttribute="width" multiplier="0.67" id="3lr-t1-Vnq"/>
+                        <constraint firstItem="kCE-Bw-z6m" firstAttribute="centerX" secondItem="TNH-FR-hGa" secondAttribute="centerX" id="43r-k1-fFg"/>
+                        <constraint firstItem="kCE-Bw-z6m" firstAttribute="top" secondItem="zPg-zf-CG4" secondAttribute="bottom" constant="10" id="4qF-fI-2JQ"/>
+                        <constraint firstItem="qHz-uU-4Xp" firstAttribute="width" secondItem="TNH-FR-hGa" secondAttribute="width" multiplier="0.67" id="7fI-Sh-5OI"/>
+                        <constraint firstItem="qHz-uU-4Xp" firstAttribute="top" secondItem="TNH-FR-hGa" secondAttribute="top" constant="150" id="LYL-mY-UBE"/>
+                        <constraint firstItem="qHz-uU-4Xp" firstAttribute="centerX" secondItem="TNH-FR-hGa" secondAttribute="centerX" id="hus-Th-by3"/>
+                        <constraint firstItem="zPg-zf-CG4" firstAttribute="centerX" secondItem="TNH-FR-hGa" secondAttribute="centerX" id="kdc-Tn-GRr"/>
+                        <constraint firstItem="zPg-zf-CG4" firstAttribute="top" secondItem="TNH-FR-hGa" secondAttribute="top" constant="150" id="zjF-FN-T1b"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jp-i7-16u">
+                    <rect key="frame" x="25" y="44" width="38" height="38"/>
+                    <state key="normal" image="btn-back"/>
+                    <connections>
+                        <action selector="popClick:" destination="-1" eventType="touchUpInside" id="5ad-Jf-Y97"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8p-T9-7uv">
+                    <rect key="frame" x="351" y="44" width="38" height="38"/>
+                    <state key="normal" image="btn-photo"/>
+                    <connections>
+                        <action selector="goPhoto:" destination="-1" eventType="touchUpInside" id="qnX-xY-XDf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TNH-FR-hGa" firstAttribute="top" secondItem="H8p-T9-7uv" secondAttribute="bottom" constant="-82" id="6ld-iA-UbF"/>
+                <constraint firstItem="TNH-FR-hGa" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="ECB-fe-cvO"/>
+                <constraint firstItem="TNH-FR-hGa" firstAttribute="top" secondItem="9jp-i7-16u" secondAttribute="bottom" constant="-82" id="FAw-qp-17i"/>
+                <constraint firstItem="9jp-i7-16u" firstAttribute="leading" secondItem="TNH-FR-hGa" secondAttribute="leading" constant="25" id="dGK-Mg-HxI"/>
+                <constraint firstItem="H8p-T9-7uv" firstAttribute="trailing" secondItem="TNH-FR-hGa" secondAttribute="trailing" constant="-25" id="drt-XP-2tP"/>
+                <constraint firstItem="TNH-FR-hGa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="jK6-af-zQ6"/>
+                <constraint firstAttribute="trailing" secondItem="TNH-FR-hGa" secondAttribute="trailing" id="s3K-RQ-ND9"/>
+                <constraint firstItem="TNH-FR-hGa" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="sBn-Pd-Clu"/>
+            </constraints>
+            <point key="canvasLocation" x="26.5" y="52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn-back" width="38" height="38"/>
+        <image name="btn-photo" width="38" height="38"/>
+        <image name="scaningbox" width="252" height="252"/>
+    </resources>
+</document>

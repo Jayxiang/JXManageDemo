@@ -8,24 +8,59 @@
 
 /* Begin PBXBuildFile section */
 		A78243AC1FB2A4FF000F06D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */; };
-		A78243AF1FB2A4FF000F06D1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243AE1FB2A4FF000F06D1 /* ViewController.m */; };
 		A78243B21FB2A4FF000F06D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A78243B01FB2A4FF000F06D1 /* Main.storyboard */; };
 		A78243B41FB2A4FF000F06D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78243B31FB2A4FF000F06D1 /* Assets.xcassets */; };
 		A78243B71FB2A4FF000F06D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A78243B51FB2A4FF000F06D1 /* LaunchScreen.storyboard */; };
 		A78243BA1FB2A4FF000F06D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243B91FB2A4FF000F06D1 /* main.m */; };
+		A78243C31FB2A547000F06D1 /* CJXPermissionsManage.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243C21FB2A547000F06D1 /* CJXPermissionsManage.m */; };
+		A78243C61FB2A6BE000F06D1 /* PermissionsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243C41FB2A6BE000F06D1 /* PermissionsTableView.m */; };
+		A78243D01FB2A740000F06D1 /* AudioRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A78243C71FB2A73E000F06D1 /* AudioRecorderViewController.xib */; };
+		A78243D11FB2A740000F06D1 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243C81FB2A73E000F06D1 /* MapViewController.m */; };
+		A78243D21FB2A740000F06D1 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A78243C91FB2A73E000F06D1 /* MapViewController.xib */; };
+		A78243D31FB2A740000F06D1 /* PhoneticRecognitionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A78243CA1FB2A73F000F06D1 /* PhoneticRecognitionVC.xib */; };
+		A78243D41FB2A740000F06D1 /* AudioRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243CB1FB2A73F000F06D1 /* AudioRecorderViewController.m */; };
+		A78243D51FB2A740000F06D1 /* PhoneticRecognitionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243CC1FB2A73F000F06D1 /* PhoneticRecognitionVC.m */; };
+		A78243D81FB2A778000F06D1 /* CLLocation+Sino.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243D61FB2A778000F06D1 /* CLLocation+Sino.m */; };
+		A78243DD1FB2A7D5000F06D1 /* CJXCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243DC1FB2A7D5000F06D1 /* CJXCamera.m */; };
+		A78243E01FB2ACB5000F06D1 /* 录音.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A78243DE1FB2ACB5000F06D1 /* 录音.m4a */; };
+		A78243E11FB2ACB5000F06D1 /* 测试1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A78243DF1FB2ACB5000F06D1 /* 测试1.mp3 */; };
+		A78243E31FB2ACEC000F06D1 /* uget.png in Resources */ = {isa = PBXBuildFile; fileRef = A78243E21FB2ACEC000F06D1 /* uget.png */; };
+		A78243E71FB2EC8E000F06D1 /* JXQRController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243E51FB2EC8E000F06D1 /* JXQRController.m */; };
+		A78243E81FB2EC8E000F06D1 /* JXQRController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A78243E61FB2EC8E000F06D1 /* JXQRController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A78243A71FB2A4FF000F06D1 /* JXManageDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JXManageDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78243AA1FB2A4FF000F06D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A78243AD1FB2A4FF000F06D1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A78243AE1FB2A4FF000F06D1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A78243B11FB2A4FF000F06D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A78243B31FB2A4FF000F06D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A78243B61FB2A4FF000F06D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A78243B81FB2A4FF000F06D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A78243B91FB2A4FF000F06D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A78243C11FB2A547000F06D1 /* CJXPermissionsManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJXPermissionsManage.h; sourceTree = "<group>"; };
+		A78243C21FB2A547000F06D1 /* CJXPermissionsManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJXPermissionsManage.m; sourceTree = "<group>"; };
+		A78243C41FB2A6BE000F06D1 /* PermissionsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionsTableView.m; sourceTree = "<group>"; };
+		A78243C51FB2A6BE000F06D1 /* PermissionsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionsTableView.h; sourceTree = "<group>"; };
+		A78243C71FB2A73E000F06D1 /* AudioRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderViewController.xib; sourceTree = "<group>"; };
+		A78243C81FB2A73E000F06D1 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		A78243C91FB2A73E000F06D1 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		A78243CA1FB2A73F000F06D1 /* PhoneticRecognitionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneticRecognitionVC.xib; sourceTree = "<group>"; };
+		A78243CB1FB2A73F000F06D1 /* AudioRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderViewController.m; sourceTree = "<group>"; };
+		A78243CC1FB2A73F000F06D1 /* PhoneticRecognitionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneticRecognitionVC.m; sourceTree = "<group>"; };
+		A78243CD1FB2A73F000F06D1 /* AudioRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderViewController.h; sourceTree = "<group>"; };
+		A78243CE1FB2A73F000F06D1 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		A78243CF1FB2A73F000F06D1 /* PhoneticRecognitionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneticRecognitionVC.h; sourceTree = "<group>"; };
+		A78243D61FB2A778000F06D1 /* CLLocation+Sino.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Sino.m"; sourceTree = "<group>"; };
+		A78243D71FB2A778000F06D1 /* CLLocation+Sino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Sino.h"; sourceTree = "<group>"; };
+		A78243DB1FB2A7D5000F06D1 /* CJXCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJXCamera.h; sourceTree = "<group>"; };
+		A78243DC1FB2A7D5000F06D1 /* CJXCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJXCamera.m; sourceTree = "<group>"; };
+		A78243DE1FB2ACB5000F06D1 /* 录音.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "录音.m4a"; sourceTree = "<group>"; };
+		A78243DF1FB2ACB5000F06D1 /* 测试1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "测试1.mp3"; sourceTree = "<group>"; };
+		A78243E21FB2ACEC000F06D1 /* uget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uget.png; sourceTree = "<group>"; };
+		A78243E41FB2EC8E000F06D1 /* JXQRController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXQRController.h; sourceTree = "<group>"; };
+		A78243E51FB2EC8E000F06D1 /* JXQRController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXQRController.m; sourceTree = "<group>"; };
+		A78243E61FB2EC8E000F06D1 /* JXQRController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JXQRController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +93,62 @@
 		A78243A91FB2A4FF000F06D1 /* JXManageDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A78243DA1FB2A7BF000F06D1 /* View */,
+				A78243D91FB2A79D000F06D1 /* 控制器 */,
+				A78243C01FB2A507000F06D1 /* CJXPermissionsManage */,
 				A78243AA1FB2A4FF000F06D1 /* AppDelegate.h */,
 				A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */,
-				A78243AD1FB2A4FF000F06D1 /* ViewController.h */,
-				A78243AE1FB2A4FF000F06D1 /* ViewController.m */,
+				A78243C51FB2A6BE000F06D1 /* PermissionsTableView.h */,
+				A78243C41FB2A6BE000F06D1 /* PermissionsTableView.m */,
+				A78243D71FB2A778000F06D1 /* CLLocation+Sino.h */,
+				A78243D61FB2A778000F06D1 /* CLLocation+Sino.m */,
 				A78243B01FB2A4FF000F06D1 /* Main.storyboard */,
+				A78243DF1FB2ACB5000F06D1 /* 测试1.mp3 */,
+				A78243DE1FB2ACB5000F06D1 /* 录音.m4a */,
 				A78243B31FB2A4FF000F06D1 /* Assets.xcassets */,
 				A78243B51FB2A4FF000F06D1 /* LaunchScreen.storyboard */,
+				A78243E21FB2ACEC000F06D1 /* uget.png */,
 				A78243B81FB2A4FF000F06D1 /* Info.plist */,
 				A78243B91FB2A4FF000F06D1 /* main.m */,
 			);
 			path = JXManageDemo;
+			sourceTree = "<group>";
+		};
+		A78243C01FB2A507000F06D1 /* CJXPermissionsManage */ = {
+			isa = PBXGroup;
+			children = (
+				A78243C11FB2A547000F06D1 /* CJXPermissionsManage.h */,
+				A78243C21FB2A547000F06D1 /* CJXPermissionsManage.m */,
+			);
+			path = CJXPermissionsManage;
+			sourceTree = "<group>";
+		};
+		A78243D91FB2A79D000F06D1 /* 控制器 */ = {
+			isa = PBXGroup;
+			children = (
+				A78243E41FB2EC8E000F06D1 /* JXQRController.h */,
+				A78243E51FB2EC8E000F06D1 /* JXQRController.m */,
+				A78243E61FB2EC8E000F06D1 /* JXQRController.xib */,
+				A78243CD1FB2A73F000F06D1 /* AudioRecorderViewController.h */,
+				A78243CB1FB2A73F000F06D1 /* AudioRecorderViewController.m */,
+				A78243C71FB2A73E000F06D1 /* AudioRecorderViewController.xib */,
+				A78243CE1FB2A73F000F06D1 /* MapViewController.h */,
+				A78243C81FB2A73E000F06D1 /* MapViewController.m */,
+				A78243C91FB2A73E000F06D1 /* MapViewController.xib */,
+				A78243CF1FB2A73F000F06D1 /* PhoneticRecognitionVC.h */,
+				A78243CC1FB2A73F000F06D1 /* PhoneticRecognitionVC.m */,
+				A78243CA1FB2A73F000F06D1 /* PhoneticRecognitionVC.xib */,
+			);
+			path = "控制器";
+			sourceTree = "<group>";
+		};
+		A78243DA1FB2A7BF000F06D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A78243DB1FB2A7D5000F06D1 /* CJXCamera.h */,
+				A78243DC1FB2A7D5000F06D1 /* CJXCamera.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +183,11 @@
 					A78243A61FB2A4FF000F06D1 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -131,7 +216,14 @@
 			files = (
 				A78243B71FB2A4FF000F06D1 /* LaunchScreen.storyboard in Resources */,
 				A78243B41FB2A4FF000F06D1 /* Assets.xcassets in Resources */,
+				A78243E31FB2ACEC000F06D1 /* uget.png in Resources */,
+				A78243D31FB2A740000F06D1 /* PhoneticRecognitionVC.xib in Resources */,
+				A78243E01FB2ACB5000F06D1 /* 录音.m4a in Resources */,
 				A78243B21FB2A4FF000F06D1 /* Main.storyboard in Resources */,
+				A78243D21FB2A740000F06D1 /* MapViewController.xib in Resources */,
+				A78243E11FB2ACB5000F06D1 /* 测试1.mp3 in Resources */,
+				A78243E81FB2EC8E000F06D1 /* JXQRController.xib in Resources */,
+				A78243D01FB2A740000F06D1 /* AudioRecorderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,9 +234,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A78243AF1FB2A4FF000F06D1 /* ViewController.m in Sources */,
+				A78243D81FB2A778000F06D1 /* CLLocation+Sino.m in Sources */,
+				A78243C61FB2A6BE000F06D1 /* PermissionsTableView.m in Sources */,
 				A78243BA1FB2A4FF000F06D1 /* main.m in Sources */,
+				A78243DD1FB2A7D5000F06D1 /* CJXCamera.m in Sources */,
+				A78243D41FB2A740000F06D1 /* AudioRecorderViewController.m in Sources */,
+				A78243D11FB2A740000F06D1 /* MapViewController.m in Sources */,
+				A78243E71FB2EC8E000F06D1 /* JXQRController.m in Sources */,
 				A78243AC1FB2A4FF000F06D1 /* AppDelegate.m in Sources */,
+				A78243D51FB2A740000F06D1 /* PhoneticRecognitionVC.m in Sources */,
+				A78243C31FB2A547000F06D1 /* CJXPermissionsManage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,11 +378,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H89E4B6ACW;
 				INFOPLIST_FILE = JXManageDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiang.jay.JXManageDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -292,11 +393,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H89E4B6ACW;
 				INFOPLIST_FILE = JXManageDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiang.jay.JXManageDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
