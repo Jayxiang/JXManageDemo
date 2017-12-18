@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A71ACC3E1FE7B08B00BBC2E4 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = A71ACC3C1FE7B08B00BBC2E4 /* UIView+Sizes.m */; };
 		A78243AC1FB2A4FF000F06D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */; };
 		A78243B21FB2A4FF000F06D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A78243B01FB2A4FF000F06D1 /* Main.storyboard */; };
 		A78243B41FB2A4FF000F06D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78243B31FB2A4FF000F06D1 /* Assets.xcassets */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A71ACC3C1FE7B08B00BBC2E4 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
+		A71ACC3D1FE7B08B00BBC2E4 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
 		A78243A71FB2A4FF000F06D1 /* JXManageDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JXManageDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78243AA1FB2A4FF000F06D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +77,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A71ACC3B1FE7B01200BBC2E4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A71ACC3D1FE7B08B00BBC2E4 /* UIView+Sizes.h */,
+				A71ACC3C1FE7B08B00BBC2E4 /* UIView+Sizes.m */,
+				A78243D71FB2A778000F06D1 /* CLLocation+Sino.h */,
+				A78243D61FB2A778000F06D1 /* CLLocation+Sino.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		A782439E1FB2A4FF000F06D1 = {
 			isa = PBXGroup;
 			children = (
@@ -93,15 +107,14 @@
 		A78243A91FB2A4FF000F06D1 /* JXManageDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A71ACC3B1FE7B01200BBC2E4 /* Tools */,
 				A78243DA1FB2A7BF000F06D1 /* View */,
-				A78243D91FB2A79D000F06D1 /* 控制器 */,
+				A78243D91FB2A79D000F06D1 /* Controller */,
 				A78243C01FB2A507000F06D1 /* CJXPermissionsManage */,
 				A78243AA1FB2A4FF000F06D1 /* AppDelegate.h */,
 				A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */,
 				A78243C51FB2A6BE000F06D1 /* PermissionsTableView.h */,
 				A78243C41FB2A6BE000F06D1 /* PermissionsTableView.m */,
-				A78243D71FB2A778000F06D1 /* CLLocation+Sino.h */,
-				A78243D61FB2A778000F06D1 /* CLLocation+Sino.m */,
 				A78243B01FB2A4FF000F06D1 /* Main.storyboard */,
 				A78243DF1FB2ACB5000F06D1 /* 测试1.mp3 */,
 				A78243DE1FB2ACB5000F06D1 /* 录音.m4a */,
@@ -123,7 +136,7 @@
 			path = CJXPermissionsManage;
 			sourceTree = "<group>";
 		};
-		A78243D91FB2A79D000F06D1 /* 控制器 */ = {
+		A78243D91FB2A79D000F06D1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				A78243E41FB2EC8E000F06D1 /* JXQRController.h */,
@@ -139,7 +152,7 @@
 				A78243CC1FB2A73F000F06D1 /* PhoneticRecognitionVC.m */,
 				A78243CA1FB2A73F000F06D1 /* PhoneticRecognitionVC.xib */,
 			);
-			path = "控制器";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A78243DA1FB2A7BF000F06D1 /* View */ = {
@@ -238,6 +251,7 @@
 				A78243C61FB2A6BE000F06D1 /* PermissionsTableView.m in Sources */,
 				A78243BA1FB2A4FF000F06D1 /* main.m in Sources */,
 				A78243DD1FB2A7D5000F06D1 /* CJXCamera.m in Sources */,
+				A71ACC3E1FE7B08B00BBC2E4 /* UIView+Sizes.m in Sources */,
 				A78243D41FB2A740000F06D1 /* AudioRecorderViewController.m in Sources */,
 				A78243D11FB2A740000F06D1 /* MapViewController.m in Sources */,
 				A78243E71FB2EC8E000F06D1 /* JXQRController.m in Sources */,
