@@ -155,17 +155,24 @@
     [self addGestureRecognizer:tapGesture];
 }
 #pragma mark - 截取照片
-- (void) shutterCamera {
-    AVCaptureConnection * videoConnection = [self.ImageOutPut connectionWithMediaType:AVMediaTypeVideo];
+- (void)shutterCamera {
+    AVCaptureConnection *videoConnection = [self.ImageOutPut connectionWithMediaType:AVMediaTypeVideo];
     if (!videoConnection) {
         NSLog(@"take photo failed!");
         return;
+    }
+    //设置前置摄像头镜像翻转
+    AVCaptureDevicePosition currentPosition=[[self.input device] position];
+    if (currentPosition == AVCaptureDevicePositionUnspecified || currentPosition == AVCaptureDevicePositionFront) {
+        videoConnection.videoMirrored = YES;
+    } else {
+        videoConnection.videoMirrored = NO;
     }
     [self.ImageOutPut captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         if (imageDataSampleBuffer == NULL) {
             return;
         }
-        NSData * imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+        NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         self.image = [UIImage imageWithData:imageData];
         
         [self.session stopRunning];
