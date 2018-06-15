@@ -9,54 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JXManageDemo/CJXPermissionsManage/CJXPermissionsManage.m"
-            timestampString = "531904486.103851"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
-            landmarkName = "-getPushPermissions:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__43-[CJXPermissionsManage getPushPermissions:]_block_invoke"
-                  moduleName = "JXManageDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tet-cjx/Desktop/JXManageDemo/JXManageDemo/CJXPermissionsManage/CJXPermissionsManage.m"
-                  timestampString = "535278345.863533"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "309"
-                  endingLineNumber = "309"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__43-[CJXPermissionsManage getPushPermissions:]_block_invoke_2"
-                  moduleName = "JXManageDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tet-cjx/Desktop/JXManageDemo/JXManageDemo/CJXPermissionsManage/CJXPermissionsManage.m"
-                  timestampString = "535278345.865642"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "309"
-                  endingLineNumber = "309"
-                  offsetFromSymbolStart = "8">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "JXManageDemo/PermissionsTableView.m"
             timestampString = "531904926.177303"
             startingColumnNumber = "9223372036854775807"

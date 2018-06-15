@@ -186,9 +186,9 @@
             //获取授权认证
             self.getLocation = completion;
             if (always) {
-                [_locationManager requestAlwaysAuthorization];
+                [self.locationManager requestAlwaysAuthorization];
             } else {
-                [_locationManager requestWhenInUseAuthorization]; //使用时开启定位
+                [self.locationManager requestWhenInUseAuthorization]; //使用时开启定位
             }
         } else {
             if (always) {
@@ -274,51 +274,59 @@
 
 #pragma mark - 语音识别权限
 - (void)getSpeechRecognitionPermissions:(void(^)(BOOL authorized))completion {
-    SFSpeechRecognizerAuthorizationStatus authStatus = [SFSpeechRecognizer authorizationStatus];
-    if (authStatus == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
-        [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (status == SFSpeechRecognizerAuthorizationStatusAuthorized) {
-                    if (completion) {
-                        completion(YES);
+    if (@available(iOS 10.0, *)) {
+        SFSpeechRecognizerAuthorizationStatus authStatus = [SFSpeechRecognizer authorizationStatus];
+        if (authStatus == SFSpeechRecognizerAuthorizationStatusNotDetermined) {
+            [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (status == SFSpeechRecognizerAuthorizationStatusAuthorized) {
+                        if (completion) {
+                            completion(YES);
+                        }
+                    } else {
+                        [self createAlertWithMessage:@"语音识别"];
+                        if (completion) {
+                            completion(NO);
+                        }
                     }
-                } else {
-                    [self createAlertWithMessage:@"语音识别"];
-                    if (completion) {
-                        completion(NO);
-                    }
-                }
-            });
-        }];
-    } else if (authStatus == SFSpeechRecognizerAuthorizationStatusAuthorized){
-        if (completion) {
-            completion(YES);
+                });
+            }];
+        } else if (authStatus == SFSpeechRecognizerAuthorizationStatusAuthorized){
+            if (completion) {
+                completion(YES);
+            }
+        } else {
+            [self createAlertWithMessage:@"语音识别"];
+            if (completion) {
+                completion(NO);
+            }
         }
     } else {
-        [self createAlertWithMessage:@"语音识别"];
-        if (completion) {
-            completion(NO);
-        }
+        // Fallback on earlier versions
     }
 }
 
 #pragma mark - 推送权限
 /** 推送iOS10以上 */
 - (void)getPushPermissions:(void(^)(BOOL authorized))completion {
-    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (granted) {
-                if (completion) {
-                    completion(YES);
+    if (@available(iOS 10.0, *)) {
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    if (completion) {
+                        completion(YES);
+                    }
+                } else {
+                    if (completion) {
+                        completion(NO);
+                    }
+                    [self createAlertWithMessage:@"通知"];
                 }
-            } else {
-                if (completion) {
-                    completion(NO);
-                }
-                [self createAlertWithMessage:@"通知"];
-            }
-        });
-    }];
+            });
+        }];
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 #pragma mark - 弹出提示框
