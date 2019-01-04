@@ -328,7 +328,44 @@
         // Fallback on earlier versions
     }
 }
-
+#pragma mark - 日历权限
+/** 日历权限 */
+- (void)getCalendarPermissions:(void(^)(BOOL authorized))completion {
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted) {
+                if (completion) {
+                    completion(YES);
+                }
+            } else {
+                if (completion) {
+                    completion(NO);
+                }
+                [self createAlertWithMessage:@"日历"];
+            }
+        });
+    }];
+}
+#pragma mark - 提醒事项权限
+/** 提醒事项权限 */
+- (void)getReminderPermissions:(void(^)(BOOL authorized))completion {
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted) {
+                if (completion) {
+                    completion(YES);
+                }
+            } else {
+                if (completion) {
+                    completion(NO);
+                }
+                [self createAlertWithMessage:@"提醒事项"];
+            }
+        });
+    }];
+}
 #pragma mark - 弹出提示框
 - (void)createAlertWithMessage:(NSString *)message {
     if (!self.autoPresent) {

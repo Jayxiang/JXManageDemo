@@ -179,18 +179,18 @@
         self.imageView = [[UIImageView alloc]initWithFrame:self.previewLayer.frame];
         [self addSubview:self.imageView];
         self.imageView.layer.masksToBounds = YES;
-        self.imageView.image = _image;
+        self.imageView.image = self.image;
         self.focusView.hidden = YES;
-        _chooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _chooseBtn.frame = CGRectMake(UIScreenWidth - 74, UIScreenHeight - 100, 60, 60);
-        [_chooseBtn setTitle:@"选择" forState:UIControlStateNormal];
-        [_chooseBtn addTarget:self action:@selector(chooseClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_chooseBtn];
-        _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _cancelBtn.frame = CGRectMake(20, UIScreenHeight - 100, 60, 60);
-        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-        [_cancelBtn addTarget:self action:@selector(cancleClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_cancelBtn];
+        self.chooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.chooseBtn.frame = CGRectMake(UIScreenWidth - 74, UIScreenHeight - 100, 60, 60);
+        [self.chooseBtn setTitle:@"选择" forState:UIControlStateNormal];
+        [self.chooseBtn addTarget:self action:@selector(chooseClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.chooseBtn];
+        self.chooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.chooseBtn.frame = CGRectMake(20, UIScreenHeight - 100, 60, 60);
+        [self.chooseBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [self.chooseBtn addTarget:self action:@selector(cancleClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.chooseBtn];
         NSLog(@"image size = %@",NSStringFromCGSize(self.image.size));
     }];
 }
@@ -289,12 +289,12 @@
         _focusView.center = point;
         _focusView.hidden = NO;
         [UIView animateWithDuration:0.3 animations:^{
-            _focusView.transform = CGAffineTransformMakeScale(1.25, 1.25);
+            self.focusView.transform = CGAffineTransformMakeScale(1.25, 1.25);
         }completion:^(BOOL finished) {
             [UIView animateWithDuration:0.5 animations:^{
-                _focusView.transform = CGAffineTransformIdentity;
+                self.focusView.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished) {
-                _focusView.hidden = YES;
+                self.focusView.hidden = YES;
             }];
         }];
     }

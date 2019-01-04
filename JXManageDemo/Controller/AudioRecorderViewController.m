@@ -101,7 +101,7 @@
     if (flag) {
         // 录音正常结束
         NSData *data = [NSData dataWithContentsOfURL:_recordFileUrl];
-        NSLog(@"%u",data.length/1024);
+        NSLog(@"%lu",data.length/1024);
     } else {
         // 未正常结束
         if ([_recorder deleteRecording]) {

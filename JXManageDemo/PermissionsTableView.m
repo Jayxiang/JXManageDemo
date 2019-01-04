@@ -20,7 +20,7 @@
 #define UIScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define UIScreenHeight [[UIScreen mainScreen] bounds].size.height
 
-@interface PermissionsTableView ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,CNContactPickerDelegate,CLLocationManagerDelegate>
+@interface PermissionsTableView ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,CNContactPickerDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) NSArray *dataArr;
 @property (nonatomic, strong) NSMutableArray *cameraArr;
@@ -48,6 +48,7 @@
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         // Fallback on earlier versions
+        self.automaticallyAdjustsScrollViewInsets = YES;
     }
     self.navigationItem.title = @"权限选择";
     
@@ -61,7 +62,9 @@
                      @"使用时请求定位权限",
                      @"麦克风",
                      @"语音识别",
-                     @"本地推送"];
+                     @"本地推送",
+                     @"日历",
+                     @"提醒事项"];
     [CJXPermissionsManage sharedInstance].autoPresent = YES;
 }
 
@@ -162,13 +165,13 @@
                     NSLog(@"获得%@权限",self.dataArr[indexPath.row]);
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
                     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"本地相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        _imagePickerController = [[UIImagePickerController alloc] init];
-                        _imagePickerController.allowsEditing = YES;
-                        _imagePickerController.delegate = self;
-                        _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                        self.imagePickerController = [[UIImagePickerController alloc] init];
+                        self.imagePickerController.allowsEditing = YES;
+                        self.imagePickerController.delegate = self;
+                        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
                         //闪光灯设置
-                        //_imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-                        [self presentViewController:_imagePickerController animated:YES completion:^{
+                        //self.imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+                        [self presentViewController:self.imagePickerController animated:YES completion:^{
                             
                         }];
                     }];
@@ -279,46 +282,168 @@
             
             break;
         }
+        case 9: {
+            [[CJXPermissionsManage sharedInstance] getCalendarPermissions:^(BOOL authorized) {
+                if (authorized) {
+                    EKEventStore *eventDB = [[EKEventStore alloc] init];
+                    //创建一个日历事件
+                    EKEvent *myEvent  = [EKEvent eventWithEventStore:eventDB];
+                    //标题
+                    myEvent.title     = @"学习";
+                    //地点
+                    myEvent.location = @"我在哪里";
+                    //开始date
+                    myEvent.startDate = [NSDate date];
+                    //结束date
+                    myEvent.endDate   = [NSDate dateWithTimeIntervalSinceNow:500];
+                    //添加一个闹钟
+                    [myEvent addAlarm:[EKAlarm alarmWithAbsoluteDate:[NSDate date]]];
+                    //添加calendar
+                    [myEvent setCalendar:[eventDB defaultCalendarForNewEvents]];
+                    NSError *err;
+                    [eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
+                } else {
+                    
+                }
+            }];
+            
+            break;
+        }
+        case 10: {
+            [[CJXPermissionsManage sharedInstance] getReminderPermissions:^(BOOL authorized) {
+                if (authorized) {
+                    //注意:添加提醒事项需要打开iCloud里面的日历,日历权限和提醒权限必须同时申请.
+                    EKEventStore *eventDB = [[EKEventStore alloc] init];
+                    EKReminder *reminder = [EKReminder reminderWithEventStore:eventDB];
+                    //标题
+                    reminder.title = @"提醒学习";
+                    //添加日历
+                    [reminder setCalendar:[self getCalendar:eventDB]];
+                    
+                    NSCalendar *cal = [NSCalendar currentCalendar];
+                    
+                    [cal setTimeZone:[NSTimeZone systemTimeZone]];
+                    
+                    NSInteger flags = NSCalendarUnitYear | NSCalendarUnitMonth |
+                    
+                    NSCalendarUnitDay |NSCalendarUnitHour | NSCalendarUnitMinute |
+                    
+                    NSCalendarUnitSecond;
+                    
+                    NSDateComponents *dateComp = [cal components:flags fromDate:[NSDate date]];
+                    
+                    dateComp.timeZone = [NSTimeZone systemTimeZone];
+                    
+                    NSDateComponents *end = [cal components:flags fromDate:[NSDate dateWithTimeIntervalSinceNow:60]];
+                    end.timeZone = [NSTimeZone systemTimeZone];
+                    
+                    reminder.startDateComponents = dateComp; //开始时间
+                    
+                    reminder.dueDateComponents = end; //到期时间
+                    reminder.priority = 1; //优先级
+                    
+                    //添加一个闹钟
+                    EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate:[NSDate dateWithTimeIntervalSinceNow:60]];
+                    
+                    [reminder addAlarm:alarm];
+                    
+                    NSError *err;
+                    
+                    [eventDB saveReminder:reminder commit:YES error:&err];
+                    NSLog(@"%@",err);
+                    
+                } else {
+                    
+                }
+            }];
+            
+            break;
+        }
         default:
             break;
     }
 }
+- (EKCalendar *)getCalendar:(EKEventStore *)store {
+    EKCalendar *calendar = nil;
+    BOOL needAdd = YES;
+    for (EKCalendar *ekcalendar in [store calendarsForEntityType:EKEntityTypeReminder]) {
+        if ([ekcalendar.title isEqualToString:@"新增日历"]) {
+            needAdd = NO;
+            calendar = ekcalendar;
+            break;
+        }
+    }
+    if (needAdd) {
+        
+        EKSource *localSource = nil;
+        
+        for (EKSource *source in store.sources) {
+            if (source.sourceType ==EKSourceTypeCalDAV && [source.title isEqualToString:@"iCloud"]) {
+                localSource = source;
+                break;
+            }
+        }
+        if (localSource == nil) {
+            //本地 是否存在
+            for (EKSource *source in store.sources) {
+                if (source.sourceType == EKSourceTypeLocal) {
+                    localSource = source;
+                    break;
+                }
+            }
+        }
+        if (localSource) {
+            calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:store];
+            calendar.source = localSource;
+            calendar.title = @"新增日历";
+            calendar.CGColor = [UIColor yellowColor].CGColor;
+            NSError *error;
+            [store saveCalendar:calendar commit:YES error:&error];
+        }
+    }
+    return calendar;
+}
 //最好放在appdelegate里面
 - (void)registerNotifications {
     //iOS10特有
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    // 必须写代理，不然无法监听通知的接收与点击
-    center.delegate = self;
-    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            // 点击允许
-            NSLog(@"注册成功");
-            [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-                NSLog(@"%@", settings);
-            }];
-        } else {
-            // 点击不允许
-            NSLog(@"注册失败");
-        }
-    }];
-    //远程推送获取
-    // 注册获得device Token
-    //    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    //获取未触发的通知
-    [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
-        NSLog(@"pending: %@", requests);
-    }];
-    //获取通知中心列表的通知
-    [[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
-        NSLog(@"Delivered: %@", notifications);
-    }];
-    //清除某一个未触发的通知
-    [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"TestRequest1"]];
-    //清除某一个通知中心的通知
-    [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"TestRequest2"]];
-    //对应的删除所有通知
-    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
-    [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+    if (@available(iOS 10.0, *)) {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        // 必须写代理，不然无法监听通知的接收与点击
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                // 点击允许
+                NSLog(@"注册成功");
+                [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                    NSLog(@"%@", settings);
+                }];
+            } else {
+                // 点击不允许
+                NSLog(@"注册失败");
+            }
+        }];
+        //远程推送获取
+        // 注册获得device Token
+        //    [[UIApplication sharedApplication] registerForRemoteNotifications];
+        //获取未触发的通知
+        [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+            NSLog(@"pending: %@", requests);
+        }];
+        //获取通知中心列表的通知
+        [[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+            NSLog(@"Delivered: %@", notifications);
+        }];
+        //清除某一个未触发的通知
+        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"TestRequest1"]];
+        //清除某一个通知中心的通知
+        [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"TestRequest2"]];
+        //对应的删除所有通知
+        [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+        [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+    } else {
+        // Fallback on earlier versions
+    }
+    
 }
 - (void)creatMsg {
     
@@ -331,32 +456,37 @@
 //        
 //    }];
     // 1.创建通知内容
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    content.title = @"测试通知";
-    content.body = @"通知内容";
-    content.badge = @1;
-    NSError *error = nil;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"uget" ofType:@"png"];
-    UNNotificationAttachment *att = [UNNotificationAttachment attachmentWithIdentifier:@"att1" URL:[NSURL fileURLWithPath:path] options:nil error:&error];
-    if (error) {
-        NSLog(@"attachment error %@", error);
-    }
-    content.attachments = @[att];
-    content.launchImageName = @"tupian";
-    // 2.设置声音
-    UNNotificationSound *sound = [UNNotificationSound defaultSound];
-    content.sound = sound;
-    // 3.触发模式
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2 repeats:NO];
-    
-    // 4.设置UNNotificationRequest
-    NSString *requestIdentifer = @"TestRequest";
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requestIdentifer content:content trigger:trigger];
-    
-    //5.把通知加到UNUserNotificationCenter, 到指定触发点会被触发
-    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+    if (@available(iOS 10.0, *)) {
+        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+        content.title = @"测试通知";
+        content.body = @"通知内容";
+        content.badge = @1;
+        NSError *error = nil;
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"uget" ofType:@"png"];
+        UNNotificationAttachment *att = [UNNotificationAttachment attachmentWithIdentifier:@"att1" URL:[NSURL fileURLWithPath:path] options:nil error:&error];
+        if (error) {
+            NSLog(@"attachment error %@", error);
+        }
+        content.attachments = @[att];
+        content.launchImageName = @"tupian";
+        // 2.设置声音
+        UNNotificationSound *sound = [UNNotificationSound defaultSound];
+        content.sound = sound;
+        // 3.触发模式
+        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2 repeats:NO];
         
-    }];
+        // 4.设置UNNotificationRequest
+        NSString *requestIdentifer = @"TestRequest";
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requestIdentifer content:content trigger:trigger];
+        
+        //5.把通知加到UNUserNotificationCenter, 到指定触发点会被触发
+        [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            
+        }];
+    } else {
+        // Fallback on earlier versions
+    }
+    
 }
 // 获得Device Token
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -367,7 +497,7 @@
     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 // iOS 10收到通知
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler API_AVAILABLE(ios(10.0)){
     NSDictionary * userInfo = notification.request.content.userInfo;
     UNNotificationRequest *request = notification.request; // 收到推送的请求
     UNNotificationContent *content = request.content; // 收到推送的消息内容
@@ -388,7 +518,7 @@
     completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
 }
 // 通知的点击事件
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler API_AVAILABLE(ios(10.0)){
     
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     UNNotificationRequest *request = response.notification.request; // 收到推送的请求

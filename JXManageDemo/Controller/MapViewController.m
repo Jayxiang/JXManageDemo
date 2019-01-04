@@ -122,7 +122,7 @@
     [searchBar setShowsCancelButton:YES animated:YES];
     if (_searchTable.y != 64) {
         [UIView animateWithDuration:0.3 animations:^{
-            _searchTable.y = 64;
+            self.searchTable.y = 64;
         } completion:^(BOOL finished) {
             
         }];
@@ -137,7 +137,7 @@
     [searchBar resignFirstResponder];
     if (_searchTable.y == 64) {
         [UIView animateWithDuration:0.3 animations:^{
-            _searchTable.y = (UIScreenHeight - 64);
+            self.searchTable.y = (UIScreenHeight - 64);
         } completion:^(BOOL finished) {
             
         }];
@@ -178,13 +178,13 @@
     if (_searchTable.y < (UIScreenHeight - 64) && _searchTable.y >= UIScreenHeight - (UIScreenHeight / 2)) {
         if (_searchTable.y > UIScreenHeight - (UIScreenHeight / 3 / 2 + 30)) {
             [UIView animateWithDuration:0.3 animations:^{
-                _searchTable.y = (UIScreenHeight - 64);
+                self.searchTable.y = (UIScreenHeight - 64);
             } completion:^(BOOL finished) {
                 
             }];
         } else {
             [UIView animateWithDuration:0.3 animations:^{
-                _searchTable.y = UIScreenHeight - (UIScreenHeight / 3);
+                self.searchTable.y = UIScreenHeight - (UIScreenHeight / 3);
             } completion:^(BOOL finished) {
                 
             }];
@@ -192,7 +192,7 @@
         
     } else if (_searchTable.y < UIScreenHeight - (UIScreenHeight / 2)) {
         [UIView animateWithDuration:0.3 animations:^{
-            _searchTable.y = 64;
+            self.searchTable.y = 64;
         } completion:^(BOOL finished) {
             
         }];

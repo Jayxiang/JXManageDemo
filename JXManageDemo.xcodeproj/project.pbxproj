@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A71ACC3E1FE7B08B00BBC2E4 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = A71ACC3C1FE7B08B00BBC2E4 /* UIView+Sizes.m */; };
+		A7777CAC21426E3000DCF6CA /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A7777CAB21426E3000DCF6CA /* FileUtil.m */; };
 		A78243AC1FB2A4FF000F06D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */; };
 		A78243B21FB2A4FF000F06D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A78243B01FB2A4FF000F06D1 /* Main.storyboard */; };
 		A78243B41FB2A4FF000F06D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78243B31FB2A4FF000F06D1 /* Assets.xcassets */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		A71ACC3C1FE7B08B00BBC2E4 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		A71ACC3D1FE7B08B00BBC2E4 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
+		A7777CAA21426E3000DCF6CA /* FileUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
+		A7777CAB21426E3000DCF6CA /* FileUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileUtil.m; sourceTree = "<group>"; };
 		A78243A71FB2A4FF000F06D1 /* JXManageDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JXManageDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78243AA1FB2A4FF000F06D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A78243AB1FB2A4FF000F06D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				A71ACC3C1FE7B08B00BBC2E4 /* UIView+Sizes.m */,
 				A78243D71FB2A778000F06D1 /* CLLocation+Sino.h */,
 				A78243D61FB2A778000F06D1 /* CLLocation+Sino.m */,
+				A7777CAA21426E3000DCF6CA /* FileUtil.h */,
+				A7777CAB21426E3000DCF6CA /* FileUtil.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				A78243D81FB2A778000F06D1 /* CLLocation+Sino.m in Sources */,
 				A78243C61FB2A6BE000F06D1 /* PermissionsTableView.m in Sources */,
 				A78243BA1FB2A4FF000F06D1 /* main.m in Sources */,
+				A7777CAC21426E3000DCF6CA /* FileUtil.m in Sources */,
 				A78243DD1FB2A7D5000F06D1 /* CJXCamera.m in Sources */,
 				A71ACC3E1FE7B08B00BBC2E4 /* UIView+Sizes.m in Sources */,
 				A78243D41FB2A740000F06D1 /* AudioRecorderViewController.m in Sources */,

@@ -14,7 +14,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>     //蓝牙权限
 #import <Speech/Speech.h>                   //语音识别
 #import <UserNotifications/UserNotifications.h> //推送权限
-
+#import <EventKit/EventKit.h>               //日历备忘录
 @interface CJXPermissionsManage : NSObject
 
 + (instancetype)sharedInstance;
@@ -58,5 +58,13 @@
 #pragma mark - 推送权限
 /** 推送iOS10以上 */
 - (void)getPushPermissions:(void(^)(BOOL authorized))completion;
+
+#pragma mark - 日历权限
+/** 日历权限 */
+- (void)getCalendarPermissions:(void(^)(BOOL authorized))completion;
+
+#pragma mark - 提醒事项权限
+/** 提醒事项权限 */
+- (void)getReminderPermissions:(void(^)(BOOL authorized))completion;
 
 @end
