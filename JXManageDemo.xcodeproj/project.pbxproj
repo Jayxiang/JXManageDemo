@@ -138,7 +138,8 @@
 				A78243C11FB2A547000F06D1 /* CJXPermissionsManage.h */,
 				A78243C21FB2A547000F06D1 /* CJXPermissionsManage.m */,
 			);
-			path = CJXPermissionsManage;
+			name = CJXPermissionsManage;
+			path = ../CJXPermissionsManage;
 			sourceTree = "<group>";
 		};
 		A78243D91FB2A79D000F06D1 /* Controller */ = {
