@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <Photos/Photos.h>                   //获取相册状态权限
 #import <CoreTelephony/CTCellularData.h>    //网络权限
 #import <Contacts/Contacts.h>               //通讯录权限

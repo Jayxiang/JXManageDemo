@@ -373,7 +373,7 @@
     }
     NSString *alertMsg = [NSString stringWithFormat:@"您可以进入系统\"设置>隐私>%@\",允许访问您的%@",message,message];
     NSString *titleMsg = [NSString stringWithFormat:@"%@权限未开启",message];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleMsg message:alertMsg preferredStyle:UIAlertControllerStyleAlert ];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleMsg message:alertMsg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:cancelAction];
     UIAlertAction *ensureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
