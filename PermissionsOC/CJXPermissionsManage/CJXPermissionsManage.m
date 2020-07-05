@@ -13,7 +13,6 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, copy) void (^getLocation)(BOOL authorized);
 
-
 @end
 @implementation CJXPermissionsManage
 
