@@ -34,6 +34,8 @@ public class Permissions: NSObject {
         return manager
     }()
     private var locationBlock: ((_ authorized: Bool) -> Void)?
+    /// 是否自动弹出设置
+    static var isAutoPresent: Bool = false
     
     // MARK: - 相册权限
     /// 是否开启相册权限
@@ -47,6 +49,7 @@ public class Permissions: NSObject {
                         сompletion(true)
                     } else {
                         сompletion(false)
+                        Permissions().createAlertWithMessage(message: "相册")
                     }
                 }
             }
@@ -54,6 +57,7 @@ public class Permissions: NSObject {
             сompletion(true)
         } else {
             сompletion(false)
+            Permissions().createAlertWithMessage(message: "相册")
         }
     }
     
@@ -292,5 +296,45 @@ extension Permissions: CLLocationManagerDelegate {
     }
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
+    }
+}
+
+extension Permissions {
+    /// 提示信息
+    func createAlertWithMessage(message: String) {
+        guard Permissions.isAutoPresent else {
+            return
+        }
+        let alertMessage = "您可以进入系统设置>隐私>\(message)，允许访问您的\(message)"
+        let titleMessage = "\(message)权限未开启"
+        let alertController: UIAlertController = UIAlertController(title: titleMessage, message: alertMessage, preferredStyle: .alert)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+        let ensureAction: UIAlertAction = UIAlertAction(title: "确定", style: .default) { (_) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(ensureAction)
+        DispatchQueue.main.async {
+            self.topViewController()?.present(alertController, animated: true, completion: nil)
+        }
+    }
+    private func topViewController() -> UIViewController? {
+        var resultVC: UIViewController?
+        resultVC = self._topViewController((UIApplication.shared.keyWindow?.rootViewController)!)
+        while ((resultVC?.presentedViewController) != nil) {
+            resultVC = self._topViewController(resultVC?.presentedViewController)
+        }
+        return resultVC
+    }
+    private func _topViewController(_ viewController: UIViewController?) -> UIViewController? {
+        if let tabBarController = viewController as? UITabBarController,
+            let selectedViewController = tabBarController.selectedViewController {
+            return self._topViewController(selectedViewController)
+        }
+        if let navigationController = viewController as? UINavigationController,
+            let topViewController = navigationController.topViewController {
+            return self._topViewController(topViewController)
+        }
+        return viewController
     }
 }
