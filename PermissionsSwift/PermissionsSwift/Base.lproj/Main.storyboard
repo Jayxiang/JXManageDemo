@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g5U-SS-gsF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g5U-SS-gsF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -157,17 +157,41 @@
             </objects>
             <point key="canvasLocation" x="1609" y="421"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="q17-Zp-lVb">
             <objects>
-                <viewController id="dAL-Bv-MhL" sceneMemberID="viewController">
+                <viewController id="dAL-Bv-MhL" customClass="CameraViewController" customModule="PermissionsSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ydb-Uv-FTg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeS-SH-cKC">
+                                <rect key="frame" x="0.0" y="88" width="414" height="448"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-gk-HdP">
+                                <rect key="frame" x="0.0" y="536" width="414" height="326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="AeS-SH-cKC" firstAttribute="leading" secondItem="6fJ-9L-U8n" secondAttribute="leading" id="7bu-QO-7pe"/>
+                            <constraint firstItem="6fJ-9L-U8n" firstAttribute="bottom" secondItem="AcX-gk-HdP" secondAttribute="bottom" id="CGS-kn-uXo"/>
+                            <constraint firstItem="AcX-gk-HdP" firstAttribute="top" secondItem="AeS-SH-cKC" secondAttribute="bottom" id="Ee0-1c-Sjs"/>
+                            <constraint firstItem="AeS-SH-cKC" firstAttribute="top" secondItem="6fJ-9L-U8n" secondAttribute="top" id="Szd-mO-Nul"/>
+                            <constraint firstItem="6fJ-9L-U8n" firstAttribute="trailing" secondItem="AcX-gk-HdP" secondAttribute="trailing" id="ge5-bW-TqW"/>
+                            <constraint firstItem="AeS-SH-cKC" firstAttribute="height" secondItem="Ydb-Uv-FTg" secondAttribute="height" multiplier="0.5" id="jfo-9A-64g"/>
+                            <constraint firstItem="6fJ-9L-U8n" firstAttribute="trailing" secondItem="AeS-SH-cKC" secondAttribute="trailing" id="oNX-Ah-ufA"/>
+                            <constraint firstItem="AcX-gk-HdP" firstAttribute="leading" secondItem="6fJ-9L-U8n" secondAttribute="leading" id="yfq-Dn-acP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6fJ-9L-U8n"/>
                     </view>
                     <navigationItem key="navigationItem" id="njj-BH-PTK"/>
+                    <connections>
+                        <outlet property="backCameraView" destination="AcX-gk-HdP" id="nOa-lt-8le"/>
+                        <outlet property="frontCameraView" destination="AeS-SH-cKC" id="dUv-1V-3JK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-s2-q4P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
