@@ -33,9 +33,17 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate & U
     }
     
     @IBAction func saveClick(_ sender: Any) {
-        Permissions.getPhotoPermissions { (authorized) in
-            if authorized {
-                self.saveImageToPhoto()
+        if #available(iOS 14, *) {
+            Permissions.getPhotoPermissions(level: .addOnly) { (authorized) in
+                if authorized {
+                    self.saveImageToPhoto()
+                }
+            }
+        } else {
+            Permissions.getPhotoPermissions { (authorized) in
+                if authorized {
+                    self.saveImageToPhoto()
+                }
             }
         }
     }

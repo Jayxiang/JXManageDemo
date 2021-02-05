@@ -26,6 +26,9 @@
 /** 是否开启相册权限 */
 - (void)getPhotoPermissions:(void(^)(BOOL authorized))completion;
 
+/** 是否开启相册权限 iOS 14 后 */
+- (void)getPhotoPermissions:(PHAccessLevel)level completion:(void(^)(BOOL authorized))completion API_AVAILABLE(ios(14));
+
 #pragma mark - 相机权限
 /** 是否开启相机权限 */
 - (void)getCameraPermissions:(void(^)(BOOL authorized))completion;

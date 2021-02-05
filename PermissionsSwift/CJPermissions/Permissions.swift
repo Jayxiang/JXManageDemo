@@ -61,6 +61,30 @@ public class Permissions: NSObject {
         }
     }
     
+    /// 是否开启相册权限 iOS 14 后
+    @available(iOS 14, *)
+    static func getPhotoPermissions(level: PHAccessLevel = .readWrite, _ сompletion: @escaping (Bool) -> Void) {
+        let status = PHPhotoLibrary.authorizationStatus(for: level)
+        // 首次安装APP，用户还未授权，系统会请求用户授权
+        if status == .notDetermined {
+            PHPhotoLibrary.requestAuthorization(for: level) { result in
+                DispatchQueue.main.async {
+                    if result == .authorized {
+                        сompletion(true)
+                    } else {
+                        сompletion(false)
+                        Permissions().createAlertWithMessage(message: "相册")
+                    }
+                }
+            }
+        } else if(status == .authorized) {
+            сompletion(true)
+        } else {
+            сompletion(false)
+            Permissions().createAlertWithMessage(message: "相册")
+        }
+    }
+    
     // MARK: - 相机权限
     /// 是否开启相机权限
     static func getCameraPermissions(_ сompletion: @escaping (Bool) -> Void) {

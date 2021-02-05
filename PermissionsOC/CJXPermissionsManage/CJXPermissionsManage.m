@@ -52,7 +52,36 @@
             });
         }];
     } else if (status == PHAuthorizationStatusAuthorized) {
-        NSLog(@"%@",[NSThread currentThread]);
+        if (completion) {
+            completion(YES);
+        }
+    } else {
+        [self createAlertWithMessage:@"相册"];
+        if (completion) {
+            completion(NO);
+        }
+    }
+}
+- (void)getPhotoPermissions:(PHAccessLevel)level completion:(void(^)(BOOL authorized))completion {
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:level];
+    //首次安装APP，用户还未授权 系统会请求用户授权
+    if (status == PHAuthorizationStatusNotDetermined) {
+        [PHPhotoLibrary requestAuthorizationForAccessLevel:level handler:^(PHAuthorizationStatus status) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (status == PHAuthorizationStatusAuthorized) {
+                    if (completion) {
+                        completion(YES);
+                    }
+                } else {
+                    //点击不允许 给用户提示框
+                    [self createAlertWithMessage:@"相册"];
+                    if (completion) {
+                        completion(NO);
+                    }
+                }
+            });
+        }];
+    } else if (status == PHAuthorizationStatusAuthorized) {
         if (completion) {
             completion(YES);
         }
