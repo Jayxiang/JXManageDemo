@@ -193,7 +193,7 @@
 }
 #pragma mark - 定位权限
 - (void)getAlwaysLocationPermissions:(BOOL)always completion:(void (^)(BOOL))completion {
-    //先判断定位服务是否可用
+    // 先判断定位服务是否可用
     if (![CLLocationManager locationServicesEnabled]) {
         NSAssert([CLLocationManager locationServicesEnabled], @"Location service enabled failed");
         return;
@@ -256,16 +256,32 @@
 
 #pragma mark - 蓝牙权限
 - (void)getBluetoothPermissions:(void(^)(BOOL authorized))completion {
-    CBPeripheralManagerAuthorizationStatus authStatus = [CBPeripheralManager authorizationStatus];
-    if (authStatus == CBPeripheralManagerAuthorizationStatusNotDetermined) {
-        CBCentralManager *cbManager = [[CBCentralManager alloc] init];
-        [cbManager scanForPeripheralsWithServices:nil options:nil];
-    } else if (authStatus == CBPeripheralManagerAuthorizationStatusAuthorized) {
-        if (completion) {
-            completion(YES);
+    if (@available(iOS 13.1, *)) {
+        CBManagerAuthorization bluetoothStatus = [CBManager authorization];
+        if (bluetoothStatus == CBManagerAuthorizationNotDetermined) {
+            CBCentralManager *cbManager = [[CBCentralManager alloc] init];
+            [cbManager scanForPeripheralsWithServices:nil options:nil];
+        } else if (bluetoothStatus == CBManagerAuthorizationAllowedAlways) {
+            if (completion) {
+                completion(YES);
+            }
+        } else {
+            if (completion) {
+                completion(NO);
+            }
         }
     } else {
-        completion(NO);
+        CBPeripheralManagerAuthorizationStatus authStatus = [CBPeripheralManager authorizationStatus];
+        if (authStatus == CBPeripheralManagerAuthorizationStatusNotDetermined) {
+            CBCentralManager *cbManager = [[CBCentralManager alloc] init];
+            [cbManager scanForPeripheralsWithServices:nil options:nil];
+        } else if (authStatus == CBPeripheralManagerAuthorizationStatusAuthorized) {
+            if (completion) {
+                completion(YES);
+            }
+        } else {
+            completion(NO);
+        }
     }
 }
 

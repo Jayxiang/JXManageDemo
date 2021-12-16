@@ -53,7 +53,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -77,7 +77,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -99,7 +99,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -121,7 +121,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .notRestricted) {
+        } else if (status == .notRestricted) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -147,7 +147,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -164,7 +164,7 @@ public class Permissions: NSObject {
         DispatchQueue.main.async {
             if status.rawValue > 0 && status.rawValue < 3 {
                 сompletion(false)
-            } else if(status == .notDetermined) {
+            } else if (status == .notDetermined) {
                 Permissions().locationBlock = сompletion
                 if isAlways {
                     Permissions().locationManager.requestAlwaysAuthorization()
@@ -188,13 +188,24 @@ public class Permissions: NSObject {
     // MARK: - 蓝牙权限
     /// 蓝牙权限
     static func getBluetoothPermissions(_ сompletion: @escaping (Bool) -> Void) {
-        let status = CBPeripheralManager.authorizationStatus()
-        if status == .notDetermined {
-            CBCentralManager().scanForPeripherals(withServices: nil, options: nil)
-        } else if(status == .authorized) {
-            сompletion(true)
+        if #available(iOS 13.1, *) {
+            let bluetoothStatus = CBManager.authorization
+            if bluetoothStatus == .notDetermined {
+                CBCentralManager().scanForPeripherals(withServices: nil, options: nil)
+            } else if bluetoothStatus == .allowedAlways {
+                сompletion(true)
+            } else {
+                сompletion(false)
+            }
         } else {
-            сompletion(false)
+            let status = CBPeripheralManager.authorizationStatus()
+            if status == .notDetermined {
+                CBCentralManager().scanForPeripherals(withServices: nil, options: nil)
+            } else if (status == .authorized) {
+                сompletion(true)
+            } else {
+                сompletion(false)
+            }
         }
     }
     
@@ -212,7 +223,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -233,7 +244,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
@@ -298,7 +309,7 @@ public class Permissions: NSObject {
                     }
                 }
             }
-        } else if(status == .authorized) {
+        } else if (status == .authorized) {
             сompletion(true)
         } else {
             сompletion(false)
